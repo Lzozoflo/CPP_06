@@ -19,29 +19,6 @@ static bool	isnaninf(std::string &toConvert)
 			toConvert == "-inff");
 }
 
-static bool	isFormat(std::string &toConvert)
-{
-	char c = toConvert[0];
-	size_t i = 0;
-	if (toConvert.empty())
-		return (false);
-	if ( c == '-' || c == '+')
-		i = 1;
-	if (i == toConvert.size())
-		return (false);
-	for (; i < toConvert.size(); i++)
-	{
-		if (!std::isdigit(static_cast<unsigned char>(toConvert[i])))
-			return false;
-	}
-	return (true);
-}
-
-static void	putChar(char c)		{std::cout << GREEN << "char: '" << c << "'" << RESET << std::endl;}
-static void	putInt(int i)		{std::cout << GREEN << "int: " << i << RESET << std::endl;}
-static void	putFloat(float f)	{std::cout << GREEN << "float: " << f << "f" << RESET << std::endl;}
-static void	putDouble(double d)	{std::cout << GREEN << "double: " << d << RESET << std::endl;}
-
 static void	putnaninf(std::string &toConvert)
 {
 	std::cout << "char: impossible" << std::endl;
@@ -53,28 +30,68 @@ static void	putnaninf(std::string &toConvert)
 	std::cout << RED << "double: " << d << RESET << std::endl;
 }
 
+static bool	isFormat(std::string &toConvert)
+{
+	if (toConvert[toConvert.size() - 1 ] == 'f')
+	{
+		// std::cout << "f find\n";
+		toConvert.resize(toConvert.size() - 1);
+	}
+	// std::cout << toConvert << std::endl;
+
+	std::stringstream iss(toConvert);
+	double d;
+
+	iss >> d;
+	if (!(!iss.fail() && iss.eof()))
+	{
+		// std::cout << "not an double/float !\n";
+		return false;
+	}
+	// std::cout << "ok double/float !\n";
+
+	return (true);
+}
+
+static void	putChar(char c)		{std::cout << GREEN << "char: '" << c << "'" << RESET << std::endl;}
+static void	putInt(int i)		{std::cout << GREEN << "int: " << i << RESET << std::endl;}
+static void	putFloat(float f)	{std::cout << GREEN << "float: " << f << "f" << RESET << std::endl;}
+static void	putDouble(double d)	{std::cout << GREEN << "double: " << d << RESET << std::endl;}
+
 void	ScalarConverter::convert(std::string &toConvert)
 {
+	double	d;
+	int i;
+	float f;
+	char c;
 	if (isnaninf(toConvert)){
 		putnaninf(toConvert);
 		return ;
 	}
-	if (!isFormat(toConvert))
+	if (isalpha(toConvert[0]) && toConvert.size() == 1)
 	{
+		std::stringstream nb(toConvert.c_str());
+
+		nb >> c;
+		d = static_cast<char>(c);
+		i = static_cast<int>(c);
+		f = static_cast<float>(c);
+	}
+	else if (isFormat(toConvert))
+	{
+		std::stringstream nb(toConvert.c_str());
+
+		nb >> d;
+		c = static_cast<char>(d);
+		i = static_cast<int>(d);
+		f = static_cast<float>(d);
+	}
+	else {
 		std::cout << RED << "Bad format." << RESET << std::endl;
 		return ;
 	}
-	double		d;
 
-	std::stringstream nb(toConvert.c_str());
-
-	nb >> d;
-	char c = static_cast<char>(d);
-	int i = static_cast<int>(d);
-	float f = static_cast<float>(d);
-
-	// char
-	if (!isprint(d))
+	if (!isprint(c))
 		std::cout << RED << "char: Non displayable" << RESET << std::endl;
 	else
 		putChar(c);

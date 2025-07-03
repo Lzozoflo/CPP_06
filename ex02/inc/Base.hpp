@@ -6,7 +6,7 @@
 /*   By: fcretin <fcretin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 14:27:31 by fcretin           #+#    #+#             */
-/*   Updated: 2025/06/15 16:13:12 by fcretin          ###   ########.fr       */
+/*   Updated: 2025/07/02 09:58:23 by fcretin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,6 @@ class Base
 	// {
 
 		virtual ~Base( void );
-
-		static Base * generate(void);
-		static void identify(Base* p);
-		static void identify(Base& p);
 	// }
 };
 

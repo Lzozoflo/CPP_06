@@ -6,11 +6,12 @@
 /*   By: fcretin <fcretin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 11:06:45 by fcretin           #+#    #+#             */
-/*   Updated: 2025/06/14 12:42:10 by fcretin          ###   ########.fr       */
+/*   Updated: 2025/07/03 09:53:27 by fcretin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
+#include <sstream>
 
 #include "ScalarConverter.hpp"
 
@@ -24,3 +25,21 @@ int main(int ac, char **av)
 	ScalarConverter::convert(str);
 	return 0;
 }
+
+// int main(void)
+// {
+// 	std::string str = "a";
+// 	std::stringstream iss(str.c_str());
+
+// 	int nb;
+
+// 	iss >> nb;
+// 	if (!iss.fail() && iss.eof())
+// 	{
+// 		std::cout << "ok !\n";
+// 	}
+// 	else
+// 		std::cout << "not an int\n";
+
+
+// }

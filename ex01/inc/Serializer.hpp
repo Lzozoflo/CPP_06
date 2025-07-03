@@ -36,9 +36,9 @@ class Serializer
 {
 	private:
 	// {
-		Serializer( void );									//Canonical
-		Serializer( const Serializer &e );				//Canonical
-		Serializer &operator=( const Serializer &e );		//Canonical
+		Serializer( void );										//Canonical
+		Serializer( const Serializer &other );						//Canonical
+		Serializer &operator=( const Serializer &other );			//Canonical
 		~Serializer( void );									//Canonical
 	// }
 	public:

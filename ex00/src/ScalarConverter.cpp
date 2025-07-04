@@ -55,8 +55,18 @@ static bool	isFormat(std::string &toConvert)
 
 static void	putChar(char c)		{std::cout << GREEN << "char: '" << c << "'" << RESET << std::endl;}
 static void	putInt(int i)		{std::cout << GREEN << "int: " << i << RESET << std::endl;}
-static void	putFloat(float f)	{std::cout << GREEN << "float: " << f << "f" << RESET << std::endl;}
 static void	putDouble(double d)	{std::cout << GREEN << "double: " << d << RESET << std::endl;}
+
+#include <cmath> // for std::isinf
+
+static void	putFloat(float f)
+{
+	if (std::isinf(f)){
+		std::cout << RED << "float: " << f << "f" << RESET << std::endl;
+	} else {
+		std::cout << GREEN << "float: " << f << "f" << RESET << std::endl;
+	}
+}
 
 void	ScalarConverter::convert(std::string &toConvert)
 {
@@ -64,10 +74,14 @@ void	ScalarConverter::convert(std::string &toConvert)
 	int i;
 	float f;
 	char c;
+
+
 	if (isnaninf(toConvert)){
 		putnaninf(toConvert);
 		return ;
 	}
+
+
 	if (isalpha(toConvert[0]) && toConvert.size() == 1)
 	{
 		std::stringstream nb(toConvert.c_str());
@@ -90,6 +104,9 @@ void	ScalarConverter::convert(std::string &toConvert)
 		std::cout << RED << "Bad format." << RESET << std::endl;
 		return ;
 	}
+
+
+
 
 	if (!isprint(c))
 		std::cout << RED << "char: Non displayable" << RESET << std::endl;

@@ -6,12 +6,13 @@
 /*   By: fcretin <fcretin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 11:06:45 by fcretin           #+#    #+#             */
-/*   Updated: 2025/07/03 09:53:27 by fcretin          ###   ########.fr       */
+/*   Updated: 2025/07/28 14:26:53 by fcretin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <sstream>
+
 
 #include "ScalarConverter.hpp"
 
@@ -23,6 +24,7 @@ int main(int ac, char **av)
 	}
 	std::string str = av[1];
 	ScalarConverter::convert(str);
+
 	return 0;
 }
 
